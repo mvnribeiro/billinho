@@ -3,12 +3,12 @@ module Api
     class InstitutionsController < ApplicationController
       before_action :set_institution, only: %i[show destroy]
       # GET /institutions
-      def index 
+      def index
         @institutions = Institution.all
         render json: InstitutionsRepresenter.new(@institutions).as_json
       end
 
-      #POST /institution
+      # POST /institution
       def create
         @institution = Institution.create(institution_params)
         if @institution.save
@@ -23,20 +23,21 @@ module Api
         render json: InstitutionRepresenter.new(@institution).as_json
       end
 
-      #DELETE /institution/:id
+      # DELETE /institution/:id
       def destroy
         @institution.destroy
         head :no_content
       end
 
       private
+
       def institution_params
         params.permit(:name, :cnpj, :type_of)
       end
+
       def set_institution
         @institution = Institution.find(params[:id])
       end
-    
     end
   end
 end

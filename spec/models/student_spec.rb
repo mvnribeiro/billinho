@@ -1,5 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should have_many(:enrollments) }
+  end
+
+  describe 'Validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:cpf) }
+    it { should validate_uniqueness_of(:cpf) }
+
+    it do
+      should allow_value('2012-12-21')
+        .for(:birth_date)
+    end
+
+    it { should validate_numericality_of(:phone) }
+    it { should validate_uniqueness_of(:phone) }
+
+    it do
+      should define_enum_for(:gender)
+        .with_values(
+          F: 'F',
+          M: 'M',
+          O: 'O'
+        )
+        .backed_by_column_of_type(:string)
+    end
+
+    it do
+      should define_enum_for(:payment_method)
+        .with_values(
+          cartão: 'cartão',
+          boleto: 'boleto'
+        )
+        .backed_by_column_of_type(:string)
+    end
+  end
 end
