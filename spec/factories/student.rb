@@ -4,7 +4,7 @@ FactoryBot.define do
     name { "#{Faker::Name.name} #{Faker::Name.middle_name} #{Faker::Name.last_name}" }
     cpf { Faker::IDNumber.unique.brazilian_citizen_number.to_i }
     birth_date { Faker::Date.between(from: '1900-01-01', to: '2004-01-01') }
-    phone { "#{PhoneNumber.area_code}9#{PhoneNumber.subscriber_number}#{PhoneNumber.subscriber_number}".to_i }
+    phone { "#{Faker::PhoneNumber.area_code}9#{Faker::PhoneNumber.subscriber_number}#{Faker::PhoneNumber.subscriber_number}".to_i }
     gender { %w[F M O].sample}
     payment_method { %w[cartão boleto].sample }
   end
