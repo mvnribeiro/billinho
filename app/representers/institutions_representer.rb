@@ -1,8 +1,8 @@
 class InstitutionsRepresenter
   def initialize(institutions)
     @institutions = institutions
-  end 
-  
+  end
+
   def as_json
     institutions.map do |institution|
       {
@@ -15,5 +15,6 @@ class InstitutionsRepresenter
   end
 
   private
+
   attr_reader :institutions
 end

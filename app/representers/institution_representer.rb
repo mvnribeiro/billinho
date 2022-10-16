@@ -13,5 +13,6 @@ class InstitutionRepresenter
   end
 
   private
+
   attr_reader :institution
 end

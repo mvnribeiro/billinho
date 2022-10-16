@@ -9,12 +9,12 @@ RSpec.describe Student, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:cpf) }
     it { should validate_uniqueness_of(:cpf) }
-    it { should validate_length_of(:cpf).is_equal_to(11) }
+    it { should validate_numericality_of(:cpf) }
+    it { should allow_value('99111117777').for(:cpf) }
+    it { should_not allow_value('2222').for(:cpf) }
+    it { should_not allow_value('1111A').for(:cpf) }
 
-    it do
-      should allow_value('2012-12-21')
-        .for(:birth_date)
-    end
+    it { should allow_value('2012-12-21').for(:birth_date) }
 
     it { should validate_numericality_of(:phone) }
     it { should validate_length_of(:phone).is_equal_to(11) }
