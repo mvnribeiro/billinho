@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_182636) do
     t.string "name"
     t.string "cpf"
     t.date "birth_date"
-    t.bigint "phone"
+    t.string "phone"
     t.string "gender"
     t.string "payment_method"
     t.datetime "created_at", null: false

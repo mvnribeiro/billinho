@@ -9,6 +9,7 @@ RSpec.describe Student, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:cpf) }
     it { should validate_uniqueness_of(:cpf) }
+    it { should validate_length_of(:cpf).is_equal_to(11) }
 
     it do
       should allow_value('2012-12-21')
@@ -16,7 +17,7 @@ RSpec.describe Student, type: :model do
     end
 
     it { should validate_numericality_of(:phone) }
-    it { should validate_uniqueness_of(:phone) }
+    it { should validate_length_of(:phone).is_equal_to(11) }
 
     it do
       should define_enum_for(:gender)
