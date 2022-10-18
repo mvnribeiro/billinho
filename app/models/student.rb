@@ -13,7 +13,6 @@ class Student < ApplicationRecord
 
   has_many :enrollments
   validates :name, :cpf, presence: true, uniqueness: true
-  validates :cpf, numericality: { only_integer: true }
   validates :phone, length: { is: 11 }
   validate :valid_date?
   validates :phone, numericality: { only_integer: true }
@@ -30,12 +29,12 @@ class Student < ApplicationRecord
     errors.add(:birth_date, 'invalid date format') unless birth_date.is_a?(Date)
   end
 
-  # def valid_cpf?
-  #   errors.add(:cpf, 'invalid cpf: must be 11 digits') unless !cpf.nil? && cpf.length == 11
-  # end
+  def valid_cpf?
+    !cpf.nil? && cpf.length == 11 && cpf !~ /\D/
+  end
 
   def format_cpf
-    if !cpf.nil? && cpf.length == 11
+    if valid_cpf?
       self.cpf = "#{cpf[0,3]}.#{cpf[3,3]}.#{cpf[6,3]}-#{cpf[9,2]}"
     else
       errors.add(:cpf, 'invalid cpf: must be 11 digits')

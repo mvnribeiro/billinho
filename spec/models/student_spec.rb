@@ -9,7 +9,6 @@ RSpec.describe Student, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:cpf) }
     it { should validate_uniqueness_of(:cpf) }
-    it { should validate_numericality_of(:cpf) }
     it { should allow_value('99111117777').for(:cpf) }
     it { should_not allow_value('2222').for(:cpf) }
     it { should_not allow_value('1111A').for(:cpf) }

@@ -40,13 +40,13 @@ RSpec.describe 'Students', type: :request do
 
   describe 'POST /student' do
     let(:student_params) do
-      { name: 'Tester da Silva', cpf: '00000000000', birth_date: '1970-07-23', phone: '99222227777', gender: 'M', payment_method: 'boleto' }
+      { name: 'Tester da Silva', cpf: 88855544411, birth_date: '1970-07-23', phone: '99222227777', gender: 'M', payment_method: 'boleto' }
     end
 
     context 'when the request is valid' do
       before { post '/api/v1/students', params: student_params }
       it 'creates a student' do
-        expect(json['cpf']).to eq('000.000.000-00')
+        expect(json['cpf']).to eq('888.555.444-11')
         expect(json['name']).to eq('Tester da Silva')
         expect(json['birth_date']).to eq('1970-07-23')
         expect(json['phone']).to eq('99222227777')
