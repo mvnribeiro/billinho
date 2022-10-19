@@ -10,6 +10,7 @@ class Institution < ApplicationRecord
   validates :name, :cnpj, presence: true, uniqueness: true
   validates :cnpj, numericality: { only_integer: true }
   validates_inclusion_of :type_of,
-                          in: Institution.type_ofs.keys,
-                          allow_blank: true
+                         in:
+                           Institution.type_ofs.keys,
+                         allow_blank: true
 end

@@ -33,10 +33,6 @@ module Api
       private
 
       def student_params
-        # params.require(:name)
-        # params.require(:cpf)
-        # params.require(:gender)
-        # params.require(:payment_method)
         params.permit(:name, :cpf, :birth_date, :phone, :gender, :payment_method)
       end
 
