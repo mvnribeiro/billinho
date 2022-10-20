@@ -64,7 +64,7 @@ RSpec.describe 'Enrollments', type: :request do
     let(:institution) { create(:institution) }
     let(:student) { create(:student) }
     let(:enrollment_params) do
-      { institution_id:, student_id:, course_name: 'Física', total_value: 9000.00, invoices: 60, due_date: 15 }
+      { institution_id:, student_id:, course_name: 'Física', total_value: 9000.00, total_invoices: 60, due_day: 15 }
     end
 
     context 'when the request params are valid' do
@@ -74,8 +74,8 @@ RSpec.describe 'Enrollments', type: :request do
         expect(json['student_id']).to eq(student_id)
         expect(json['course_name']).to eq('Física')
         expect(json['total_value']).to eq('9000.0')
-        expect(json['invoices']).to eq(60)
-        expect(json['due_date']).to eq(15)
+        expect(json['total_invoices']).to eq(60)
+        expect(json['due_day']).to eq(15)
       end
       it 'when successfully created' do
         expect(response).to have_http_status(201)

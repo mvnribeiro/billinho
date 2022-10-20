@@ -47,7 +47,7 @@ module Api
       private
 
       def enrollment_params
-        params.permit(:institution_id, :student_id, :course_name, :total_value, :invoices, :due_date)
+        params.permit(:institution_id, :student_id, :course_name, :total_value, :total_invoices, :due_day)
       end
 
       def set_enrollment

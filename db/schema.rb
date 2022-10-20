@@ -16,8 +16,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_182636) do
 
   create_table "enrollments", force: :cascade do |t|
     t.decimal "total_value"
-    t.integer "invoices"
-    t.integer "due_date"
+    t.integer "total_invoices"
+    t.integer "due_day"
     t.string "course_name"
     t.bigint "institution_id", null: false
     t.bigint "student_id", null: false
