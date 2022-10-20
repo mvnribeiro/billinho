@@ -11,6 +11,10 @@ module Api
         render json: EnrollmentsRepresenter.new(@enrollments).as_json
       end
 
+      def show
+        render json: EnrollmentRepresenter.new(@enrollment).as_json
+      end
+
       # POST /enrollment
       def create
         @enrollment = Enrollment.create(enrollment_params)
@@ -24,14 +28,14 @@ module Api
       # GET /students/:id/enrollments
       def by_student
         @student_id = params[:student_id]
-        @enrollments = Enrollments.where(student_id: @student_id)
+        @enrollments = Enrollment.where(student_id: @student_id)
         render json: EnrollmentsRepresenter.new(@enrollments).as_json
       end
 
       # GET /institutions/:id/enrollments
       def by_institution
         @institution_id = params[:institution_id]
-        @enrollments = Enrollments.where(institution_id: @institution_id)
+        @enrollments = Enrollment.where(institution_id: @institution_id)
         render json: EnrollmentsRepresenter.new(@enrollments).as_json
       end
 
@@ -43,7 +47,7 @@ module Api
       private
 
       def enrollment_params
-        params.permit(:total_value, :invoices, :due_date)
+        params.permit(:institution_id, :student_id, :course_name, :total_value, :invoices, :due_date)
       end
 
       def set_enrollment
