@@ -46,7 +46,7 @@ RSpec.describe 'Students', type: :request do
     context 'when the request is valid' do
       before { post '/api/v1/students', params: student_params }
       it 'creates a student' do
-        expect(json['cpf']).to eq('888.555.444-11')
+        expect(json['cpf']).to eq('88855544411')
         expect(json['name']).to eq('Tester da Silva')
         expect(json['birth_date']).to eq('1970-07-23')
         expect(json['phone']).to eq('99222227777')
