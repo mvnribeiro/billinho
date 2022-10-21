@@ -18,7 +18,7 @@ RSpec.describe 'Students', type: :request do
   describe 'GET /students/:id' do
     before { get "/api/v1/students/#{student_id}" }
 
-    context 'when the user exists' do
+    context 'when the student exists' do
       it 'returns the user' do
         expect(json['id']).to eq(student_id)
       end
@@ -27,7 +27,7 @@ RSpec.describe 'Students', type: :request do
       end
     end
 
-    context 'when the user does not exist' do
+    context 'when the student does not exist' do
       let(:student_id) { 0 }
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -53,7 +53,7 @@ RSpec.describe 'Students', type: :request do
         expect(json['gender']).to eq('M')
         expect(json['payment_method']).to eq('boleto')
       end
-      it 'when successfully created' do
+      it 'returns status code 201' do
         expect(response).to have_http_status(201)
       end
     end

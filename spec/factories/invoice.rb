@@ -1,8 +1,10 @@
 FactoryBot.define do
   factory :invoice do
     enrollment
+    institution
+    student
     value { enrollment.total_value / enrollment.total_invoices }
-    sequence(:due_date, 1) { |n| Date.new(2023, n, enrollment.due_day) }
+    due_date { Faker::Date.forward(days: 30) }
     status { 'aberta' }
   end
 end

@@ -1,5 +1,7 @@
 class Invoice < ApplicationRecord
   belongs_to :enrollment
+  belongs_to :institution
+  belongs_to :student
 
   STATUS_OPTIONS = {
     aberta: 'aberta',

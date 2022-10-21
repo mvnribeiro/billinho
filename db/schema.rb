@@ -39,10 +39,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_182636) do
     t.decimal "value"
     t.date "due_date"
     t.bigint "enrollment_id", null: false
+    t.bigint "institution_id", null: false
+    t.bigint "student_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["enrollment_id"], name: "index_invoices_on_enrollment_id"
+    t.index ["institution_id"], name: "index_invoices_on_institution_id"
+    t.index ["student_id"], name: "index_invoices_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -59,4 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_182636) do
   add_foreign_key "enrollments", "institutions"
   add_foreign_key "enrollments", "students"
   add_foreign_key "invoices", "enrollments"
+  add_foreign_key "invoices", "students"
+  add_foreign_key "invoices", "institutions"
 end

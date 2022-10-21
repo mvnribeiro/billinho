@@ -28,7 +28,7 @@ RSpec.describe 'Institutions', type: :request do
         expect(json['cnpj']).to eq('123456789')
         expect(json['type_of']).to eq('universidade')
       end
-      it 'when successfully created' do
+      it 'returns status code 201' do
         expect(response).to have_http_status(201)
       end
     end

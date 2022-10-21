@@ -12,6 +12,7 @@ class Student < ApplicationRecord
   enum payment_method: PAYMENT_METHODS_OPTIONS
 
   has_many :enrollments
+  has_many :invoices
   validates :name, :cpf, presence: true, uniqueness: true
   validates :phone, length: { is: 11 }
   validate :valid_date?
