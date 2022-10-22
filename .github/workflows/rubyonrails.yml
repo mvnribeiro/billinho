@@ -50,8 +50,12 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
+      - name: Open Web Client Directory
+        working-directory: src/webclient
+        run: |
+              ls -la
       - name: Security audit dependencies
-        run: gem install bundle-audit
+        run: bin/bundler-audit --update
       - name: Security audit application code
         run: bin/brakeman -q -w2
       - name: Lint Ruby files
