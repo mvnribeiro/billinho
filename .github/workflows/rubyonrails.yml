@@ -50,15 +50,9 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Security audit dependencies
-        run: bin/bundler-audit --update
-      - name: Checkout code
-        uses: actions/checkout@v2
+        run: bundle exec bundler-audit --update
       - name: Security audit application code
-        run: bin/brakeman -q -w2
-      - name: Checkout code
-        uses: actions/checkout@v2
+        run: bundle exec brakeman -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
