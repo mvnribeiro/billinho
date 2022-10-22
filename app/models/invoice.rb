@@ -7,7 +7,7 @@ class Invoice < ApplicationRecord
     aberta: 'aberta',
     atrasada: 'atrasada',
     paga: 'paga'
-  }
+  }.freeze
   enum status: STATUS_OPTIONS
 
   validates :enrollment_id, :value, :due_date, :status, presence: true

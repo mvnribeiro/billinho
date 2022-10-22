@@ -3,11 +3,11 @@ class Student < ApplicationRecord
     F: 'F',
     M: 'M',
     O: 'O'
-  }
+  }.freeze
   PAYMENT_METHODS_OPTIONS = {
     cartão: 'cartão',
     boleto: 'boleto'
-  }
+  }.freeze
   enum gender: GENDER_OPTIONS
   enum payment_method: PAYMENT_METHODS_OPTIONS
 

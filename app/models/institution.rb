@@ -3,7 +3,7 @@ class Institution < ApplicationRecord
     universidade: 'universidade',
     escola: 'escola',
     creche: 'creche'
-  }
+  }.freeze
   enum type_of: TYPES_OF_INSTITUTION
 
   has_many :enrollments
