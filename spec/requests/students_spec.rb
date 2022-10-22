@@ -44,7 +44,9 @@ RSpec.describe 'Students', type: :request do
     end
 
     context 'when the request is valid' do
-      before { post '/api/v1/students', params: student_params }
+      before do
+        post '/api/v1/students', params: { student: student_params }
+      end
       it 'creates a student' do
         expect(json['cpf']).to eq('88855544411')
         expect(json['name']).to eq('Tester da Silva')
@@ -59,7 +61,9 @@ RSpec.describe 'Students', type: :request do
     end
 
     context 'when the request attributes are invalid' do
-      before { post '/api/v1/students', params: {} }
+      before do
+        post '/api/v1/students', params: { student: { name: '' } }
+      end
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end

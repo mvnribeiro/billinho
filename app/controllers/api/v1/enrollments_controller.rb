@@ -19,6 +19,7 @@ module Api
       def create
         @enrollment = Enrollment.create(enrollment_params)
         if @enrollment.save
+          InvoiceGenerator.call(@enrollment)
           render json: EnrollmentRepresenter.new(@enrollment).as_json, status: :created
         else
           render json: @enrollment.errors, status: :unprocessable_entity
@@ -47,7 +48,7 @@ module Api
       private
 
       def enrollment_params
-        params.permit(:institution_id, :student_id, :course_name, :total_value, :total_invoices, :due_day)
+        params.require(:enrollment).permit(:institution_id, :student_id, :course_name, :total_value, :total_invoices, :due_day)
       end
 
       def set_enrollment

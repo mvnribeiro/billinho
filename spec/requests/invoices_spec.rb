@@ -61,38 +61,6 @@ RSpec.describe 'Invoices', type: :request do
     end
   end
 
-  describe 'POST /invoice' do
-    let!(:enrollment) { create(:enrollment) }
-    let!(:institution2) { create(:institution) }
-    let!(:student2) { create(:student) }
-    let!(:invoice_params) do
-      { enrollment_id:, institution_id: institution2.id, student_id: student2.id, value: 129.0, due_date: '2023-12-21', status: 'aberta' }
-    end
-
-    context 'when the request params are valid' do
-      before { post '/api/v1/invoices', params: invoice_params }
-      it 'creates an invoice' do
-        expect(json['enrollment_id']).to eq(enrollment_id)
-        expect(json['value']).to eq('129.0')
-        expect(json['due_date']).to eq('2023-12-21')
-        expect(json['status']).to eq('aberta')
-      end
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-    end
-
-    context 'when the request params are invalid' do
-      before { post '/api/v1/invoices', params: {} }
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-      it 'returns an error message' do
-        expect(response.body).to include('must exist')
-      end
-    end
-  end
-
   describe 'DELETE /invoices/:id' do
     before { delete "/api/v1/invoices/#{invoice_id}" }
     it 'returns status code 204' do

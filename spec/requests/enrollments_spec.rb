@@ -64,26 +64,33 @@ RSpec.describe 'Enrollments', type: :request do
     let(:institution) { create(:institution) }
     let(:student) { create(:student) }
     let(:enrollment_params) do
-      { institution_id:, student_id:, course_name: 'Física', total_value: 9000.00, total_invoices: 60, due_day: 15 }
+      { institution_id:, student_id:, course_name: 'Física', total_value: 9000.00, total_invoices: 5, due_day: 15 }
     end
 
     context 'when the request params are valid' do
-      before { post '/api/v1/enrollments', params: enrollment_params }
+      before do
+        post '/api/v1/enrollments', params: { enrollment: enrollment_params }
+      end
       it 'creates an enrollment' do
         expect(json['institution_id']).to eq(institution_id)
         expect(json['student_id']).to eq(student_id)
         expect(json['course_name']).to eq('Física')
         expect(json['total_value']).to eq('9000.0')
-        expect(json['total_invoices']).to eq(60)
+        expect(json['total_invoices']).to eq(5)
         expect(json['due_day']).to eq(15)
       end
       it 'when successfully created' do
         expect(response).to have_http_status(201)
       end
+      it 'creates invoices' do
+        expect(Invoice.where(enrollment_id: json['id']).count).to eq(5)
+      end
     end
 
     context 'when the request params are invalid' do
-      before { post '/api/v1/enrollments', params: {} }
+      before do
+        post '/api/v1/enrollments', params: { enrollment: { due_day: 2 } }
+      end
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end

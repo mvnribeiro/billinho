@@ -17,12 +17,37 @@ RSpec.describe 'Institutions', type: :request do
     end
   end
 
+  describe 'GET /institutions/:id' do
+    before { get "/api/v1/institutions/#{institution_id}" }
+
+    context 'when the institution exists' do
+      it 'returns the institution' do
+        expect(json['id']).to eq(institution_id)
+      end
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the institution does not exist' do
+      let(:institution_id) { 0 }
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+      it 'returns a not found message' do
+        expect(response.body).to include("Couldn't find Institution with 'id'=0")
+      end
+    end
+  end
+
   describe 'POST /institution' do
     let(:institution_params) do
       { name: 'UNITEST', cnpj: '123456789', type_of: 'universidade' }
     end
     context 'when the request is valid' do
-      before { post '/api/v1/institutions', params: institution_params }
+      before do
+        post '/api/v1/institutions', params: { institution: institution_params }
+      end
       it 'creates an institution' do
         expect(json['name']).to eq('UNITEST')
         expect(json['cnpj']).to eq('123456789')
@@ -33,44 +58,15 @@ RSpec.describe 'Institutions', type: :request do
       end
     end
 
-    context 'when name is invalid' do
-      before { institution_params.merge!(name: '') }
-      before { post '/api/v1/institutions', params: institution_params }
+    context 'when the request params are invalid' do
+      before do
+        post '/api/v1/institutions', params: { institution: { name: '' } }
+      end
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
-      it 'returns a validation error message' do
+      it 'returns an error message' do
         expect(response.body).to include("can't be blank")
-      end
-    end
-
-    context 'when name already exists' do
-      before { post '/api/v1/institutions', params: institution_params }
-      before { institution_params.merge!(cnpj: '111999') }
-      before { post '/api/v1/institutions', params: institution_params }
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-      it 'returns a validadtion error message' do
-        expect(response.body).to include('has already been taken')
-      end
-    end
-
-    context 'when cnpj is invalid' do
-      before { institution_params.merge!(cnpj: 'onetwothree') }
-      before { post '/api/v1/institutions', params: institution_params }
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-      it 'returns a validation error message' do
-        expect(response.body).to include('is not a number')
-      end
-    end
-
-    context 'when type_of is invalid' do
-      before { institution_params.merge!(type_of: 'esola') }
-      it 'raises an error' do
-        expect { post '/api/v1/institutions', params: institution_params }.to raise_error(ArgumentError)
       end
     end
   end

@@ -32,7 +32,7 @@ module Api
       private
 
       def institution_params
-        params.permit(:name, :cnpj, :type_of)
+        params.require(:institution).permit(:name, :cnpj, :type_of)
       end
 
       def set_institution

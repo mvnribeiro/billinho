@@ -13,7 +13,9 @@ class Student < ApplicationRecord
 
   has_many :enrollments
   has_many :invoices
-  validates :name, :cpf, presence: true, uniqueness: true
+
+  validates :name, presence: true
+  validates :cpf, presence: true, uniqueness: true
   validates :phone, :cpf, length: { is: 11 }
   validate :valid_date?
   validates :phone, :cpf, numericality: { only_integer: true }

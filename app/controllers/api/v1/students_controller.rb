@@ -33,7 +33,7 @@ module Api
       private
 
       def student_params
-        params.permit(:name, :cpf, :birth_date, :phone, :gender, :payment_method)
+        params.require(:student).permit(:name, :cpf, :birth_date, :phone, :gender, :payment_method)
       end
 
       def set_student

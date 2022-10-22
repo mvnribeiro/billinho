@@ -2,7 +2,7 @@ class Enrollment < ApplicationRecord
   belongs_to :institution
   belongs_to :student
 
-  has_many :invoices
+  has_many :invoices, dependent: :destroy
 
   validates :institution_id, :student_id, :total_value, :total_invoices, :due_day, :course_name, presence: true
   validates_numericality_of :total_value, greater_than: 0
