@@ -8,7 +8,7 @@ module Api
         @invoices = Invoice.all
         render json: InvoicesRepresenter.new(@invoices).as_json
       end
-      
+
       def show
         render json: InvoiceRepresenter.new(@invoice).as_json
       end

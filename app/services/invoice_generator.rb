@@ -23,11 +23,9 @@ class InvoiceGenerator
   end
 
   def set_due_date(month)
-    begin
-      Date.new(Date.year, month, due_day)
-    rescue Date::Error
-      Date.new(Date.year, month, due_day - 1)
-    end
+    Date.new(Date.year, month, due_day)
+  rescue Date::Error
+    Date.new(Date.year, month, due_day - 1)
   end
 
   def generate_invoices
@@ -41,15 +39,13 @@ class InvoiceGenerator
 
   def create_invoice(due_date)
     @invoice = Invoice.create!({
-                  enrollment_id:,
-                  institution_id: institution_id,
-                  student_id:,
-                  value:,
-                  due_date:,
-                  status: 'aberta'
-                  })
-    unless @invoice.save
-      render json: @invoice.errors, status: :unprocessable_entity
-    end
+                                 enrollment_id:,
+                                 institution_id:,
+                                 student_id:,
+                                 value:,
+                                 due_date:,
+                                 status: 'aberta'
+                               })
+    render json: @invoice.errors, status: :unprocessable_entity unless @invoice.save
   end
 end
