@@ -3,4 +3,5 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'spec/**/*'
+    - 'config/**/*'
     - 'vendor/**/*'
