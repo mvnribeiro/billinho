@@ -5,3 +5,4 @@ AllCops:
     - 'spec/**/*'
     - 'config/**/*'
     - 'vendor/**/*'
+    - 'bin/**/*'
