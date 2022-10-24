@@ -3,13 +3,13 @@
 
 Billinho aims to simulate a payment management API to help students keep track of their monthly fees owed/paid to their educational institution.
 ## **Objects**
-* [**Institution**](#resources/institution)
+* [**Institution**](#institution)
 
-* [**Student**](#resources/student)
+* [**Student**](#student)
 
-* [**Enrollment**](#resources/enrollment)
+* [**Enrollment**](#enrollment)
 
-* [**Invoice**](#resources/invoice)
+* [**Invoice**](#invoice)
 
 # **Getting Started**
 ## **Requirements**
