@@ -41,12 +41,12 @@ rails db:seed
 rails server
 ```
 
+Then, you can use [Postman](https://postman.com) to interact with the API.
+
 ## **Running tests**
 ```shell
 bundle exec rspec
 ```
-
-Then, you can use [Postman](https://postman.com) to interact with the API.
 
 
 # **Resources**
