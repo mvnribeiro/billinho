@@ -11,7 +11,7 @@ class Student < ApplicationRecord
   enum gender: GENDER_OPTIONS
   enum payment_method: PAYMENT_METHODS_OPTIONS
 
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :invoices
 
   validates :name, presence: true

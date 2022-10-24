@@ -6,8 +6,9 @@ class Institution < ApplicationRecord
   }.freeze
   enum type_of: TYPES_OF_INSTITUTION
 
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :invoices
+
   validates :name, :cnpj, presence: true, uniqueness: true
   validates :cnpj, numericality: { only_integer: true }
   validates_inclusion_of :type_of,

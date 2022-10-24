@@ -10,7 +10,7 @@ class InvoicesRepresenter
         enrollment_id: invoice.enrollment_id,
         institution_id: invoice.institution_id,
         student_id: invoice.student_id,
-        value: invoice.value,
+        value: invoice.value.round(2),
         due_date: invoice.due_date,
         status: invoice.status
       }
