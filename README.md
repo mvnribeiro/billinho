@@ -83,7 +83,7 @@ Status 200 OK
     }
 ]
 ```
-`GET /institution/:id`
+`GET /institutions/:id`
 ```
 Status 200 OK
 [
@@ -95,7 +95,7 @@ Status 200 OK
     }
 ]
 ```
-`DELETE /institution/:id`
+`DELETE /institutions/:id`
 ```
 Status 204 No Content
 ```
@@ -218,7 +218,7 @@ Status 200 OK
     }
 ]
 ```
-`DELETE /students/:id`
+`DELETE /enrollments/:id`
 ```
 Status 204 No Content
 ```
