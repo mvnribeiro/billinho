@@ -58,6 +58,7 @@ bundle exec rspec
 
 `POST /institutions`
 ```
+Status 201 OK
 { 
     "name": "UNITEST",
     "cnpj": "123436739",
@@ -107,6 +108,7 @@ Status 204 No Content
 
 `POST /students`
 ```
+Status 201 OK
 { 
     "name": "Teste da Silva",
     "cpf": 12345671900,
@@ -169,6 +171,7 @@ Status 204 No Content
 
 `POST /enrollments`
 ```
+Status 201 OK
 { 
     "institution_id": 1,
     "student_id": 1,
