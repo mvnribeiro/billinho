@@ -22,12 +22,18 @@ class InvoiceGenerator
     end
   end
 
+  def set_due_date(year, month)
+    Date.new(year, month, due_day)
+  rescue Date::Error
+    Date.new(year, month, -1)
+  end
+
   def generate_invoices
     due_date = Date.new(Date.today.year, starting_month, due_day)
 
     invoices.times do
       create_invoice(due_date)
-      due_date = due_date.next_month
+      due_date = set_due_date(due_date.next_month.year, due_date.next_month.month)
     end
   end
 
