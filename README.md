@@ -41,12 +41,12 @@ rails db:seed
 rails server
 ```
 
+Then, you can use [Postman](https://postman.com) to interact with the API.
+
 ## **Running tests**
 ```shell
 bundle exec rspec
 ```
-
-Then, you can use [Postman](https://postman.com) to interact with the API.
 
 
 # **Resources**
@@ -58,6 +58,7 @@ Then, you can use [Postman](https://postman.com) to interact with the API.
 
 `POST /institutions`
 ```
+Status 201 Created
 { 
     "name": "UNITEST",
     "cnpj": "123436739",
@@ -83,7 +84,7 @@ Status 200 OK
     }
 ]
 ```
-`GET /institution/:id`
+`GET /institutions/:id`
 ```
 Status 200 OK
 [
@@ -95,7 +96,7 @@ Status 200 OK
     }
 ]
 ```
-`DELETE /institution/:id`
+`DELETE /institutions/:id`
 ```
 Status 204 No Content
 ```
@@ -107,6 +108,7 @@ Status 204 No Content
 
 `POST /students`
 ```
+Status 201 Created
 { 
     "name": "Teste da Silva",
     "cpf": 12345671900,
@@ -169,6 +171,7 @@ Status 204 No Content
 
 `POST /enrollments`
 ```
+Status 201 Created
 { 
     "institution_id": 1,
     "student_id": 1,
@@ -218,7 +221,7 @@ Status 200 OK
     }
 ]
 ```
-`DELETE /students/:id`
+`DELETE /enrollments/:id`
 ```
 Status 204 No Content
 ```
@@ -245,9 +248,9 @@ Status 200 OK
     },
     {
         "id": 2,
-        "enrollment_id": 1,
-        "institution_id": 1,
-        "student_id": 1,
+        "enrollment_id": 9,
+        "institution_id": 144,
+        "student_id": 17889,
         "value": "4808.11",
         "due_date": "2022-11-28",
         "status": "aberta"
