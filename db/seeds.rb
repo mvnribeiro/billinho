@@ -23,7 +23,7 @@ end
   enrollment = Enrollment.create!(
     institution_id: rand(1..5),
     student_id: n,
-    course_name: ['Biologia', 'Educação Física', 'Letras', 'Matemática', 'Ciêmcia da Computação', 'Química', 'Matemática'].sample,
+    course_name: ['Biologia', 'Educação Física', 'Letras', 'Matemática', 'Ciência da Computação', 'Química', 'Física'].sample,
     total_value: rand(1_000.0..100_000.0),
     total_invoices: [6, 12, 18].sample,
     due_day: rand(1..31)
