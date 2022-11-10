@@ -29,7 +29,7 @@ class InvoiceGenerator
   end
 
   def generate_invoices
-    due_date = Date.new(Date.today.year, starting_month, due_day)
+    due_date = set_due_date(Date.today.year, starting_month)
 
     invoices.times do
       create_invoice(due_date)
